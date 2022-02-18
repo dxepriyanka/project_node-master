@@ -128,10 +128,19 @@ function App() {
       
       let initials = data[i].name.split(' ').reduce((acc, subname) =>
         acc + subname[0], '')
+
+        //if((initials.trim()).length() > 0)
       // console.log(initials)
       // if(initials==" ") continue
-      if (day === "Monday") {
-        mon.push({ date, initials })
+      //initials=initials.trim();
+      if (data[i].birthday.trim() !== "" && data[i].name.trim() !== "") 
+      if (day === "Monday") { 
+        // if(!initials==""){
+        //   mon.push({ date, initials })
+        // }else{
+        //   setWeekdays("");
+        // }
+         mon.push({ date, initials })
       }
       else if (day === "Tuesday") {
         tue.push({ date, initials })
@@ -199,8 +208,8 @@ function App() {
             <div className="app__actions">
               <label>Year</label>
               <select className="js-year-input" value={showyear} onChange={(e) => { handleYearChange(e) }}>
-                <option value="2020">2022</option>
-                <option value="2020">2021</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
                 <option value="2020">2020</option>
                 <option value="2019">2019</option>
                 <option value="2018">2018</option>
