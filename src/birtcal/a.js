@@ -115,15 +115,21 @@ function App() {
     const sun = []
 
     for (let i = 0; i < data.length; i++) {
-      var date = new Date(data[i].birthday.substring(6, 10))
-      let changeyear = new Date(data[i].birthday.substring(0, 6) + showyear)
+      let date1=new Date(data[i].birthday)
+      let date=date1.getDate()
+      let month=date1.getMonth()+1
+      // let date = new Date(data[i].birthday.substring(6, 10))
+      //let changeyear = new Date(data[i].birthday.substring(0, 6) + showyear)
+      let changeyear = new Date(month +"/"+ date+"/"+showyear)
       // console.log(changeyear)
       // console.log(data[i].birthday.substring(0,6))
       const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       var day = weekday[changeyear.getDay()]
+      
       let initials = data[i].name.split(' ').reduce((acc, subname) =>
         acc + subname[0], '')
       // console.log(initials)
+      // if(initials==" ") continue
       if (day === "Monday") {
         mon.push({ date, initials })
       }
@@ -145,12 +151,14 @@ function App() {
       else if (day === "Sunday") {
         sun.push({ date, initials })
       }
+      // else if () {
+      //   sun.push({ date, initials })
     }
     setWeekdays({
       Mon: mon.sort((a, b) => (a.date < b.date) ? 1 : -1),
       Tue: tue.sort((a, b) => (a.date < b.date) ? 1 : -1),
       Wed: wed.sort((a, b) => (a.date < b.date) ? 1 : -1),
-      Thus: thus.sort((a, b) => (a.date < b.date) ? 1 : -1),
+      Thus:thus.sort((a, b) => (a.date < b.date) ? 1 : -1),
       Fri: fri.sort((a, b) => (a.date < b.date) ? 1 : -1),
       Sat: sat.sort((a, b) => (a.date < b.date) ? 1 : -1),
       Sun: sun.sort((a, b) => (a.date < b.date) ? 1 : -1)
@@ -191,6 +199,8 @@ function App() {
             <div className="app__actions">
               <label>Year</label>
               <select className="js-year-input" value={showyear} onChange={(e) => { handleYearChange(e) }}>
+                <option value="2020">2022</option>
+                <option value="2020">2021</option>
                 <option value="2020">2020</option>
                 <option value="2019">2019</option>
                 <option value="2018">2018</option>
